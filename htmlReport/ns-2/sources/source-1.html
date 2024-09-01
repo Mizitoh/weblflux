@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ControllerExceptionHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mizitoh.webflux.controller.exceptions</a>
+</div>
+
+<h1>Coverage Summary for Class: ControllerExceptionHandler (com.mizitoh.webflux.controller.exceptions)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ControllerExceptionHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.mizitoh.webflux.controller.exceptions;
+&nbsp;
+&nbsp;import com.mizitoh.webflux.service.exception.ObjectNotFoundException;
+&nbsp;import org.springframework.dao.DuplicateKeyException;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.http.server.reactive.ServerHttpRequest;
+&nbsp;import org.springframework.validation.FieldError;
+&nbsp;import org.springframework.web.bind.annotation.ControllerAdvice;
+&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
+&nbsp;import org.springframework.web.bind.support.WebExchangeBindException;
+&nbsp;import reactor.core.publisher.Mono;
+&nbsp;
+&nbsp;import static java.time.LocalDateTime.now;
+&nbsp;import static org.springframework.http.HttpStatus.BAD_REQUEST;
+&nbsp;import static org.springframework.http.HttpStatus.NOT_FOUND;
+&nbsp;
+&nbsp;@ControllerAdvice
+<b class="nc">&nbsp;public class ControllerExceptionHandler {</b>
+&nbsp;
+&nbsp;    @ExceptionHandler(DuplicateKeyException.class)
+&nbsp;    ResponseEntity&lt;Mono&lt;StandardError&gt;&gt; duplicateKeyException(DuplicateKeyException ex, ServerHttpRequest request
+&nbsp;    ) {
+<b class="nc">&nbsp;        return ResponseEntity.badRequest()</b>
+<b class="nc">&nbsp;                .body(Mono.just(</b>
+<b class="nc">&nbsp;                        StandardError.builder()</b>
+<b class="nc">&nbsp;                                .timeStamp(now())</b>
+<b class="nc">&nbsp;                                .status(BAD_REQUEST.value())</b>
+<b class="nc">&nbsp;                                .error(BAD_REQUEST.getReasonPhrase())</b>
+<b class="nc">&nbsp;                                .message(ex.getMessage())</b>
+<b class="nc">&nbsp;                                .path(request.getURI().getPath())</b>
+<b class="nc">&nbsp;                                .build()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(WebExchangeBindException.class)
+&nbsp;    public ResponseEntity&lt;Mono&lt;ValidationError&gt;&gt; validationError(WebExchangeBindException ex, ServerHttpRequest request) {
+<b class="nc">&nbsp;        ValidationError error = new ValidationError(</b>
+<b class="nc">&nbsp;                now(),</b>
+<b class="nc">&nbsp;                request.getPath().toString(),</b>
+<b class="nc">&nbsp;                BAD_REQUEST.value(),</b>
+&nbsp;                &quot;Erro de Validação&quot;,
+&nbsp;                &quot;Erro nos compos da requisição&quot;
+&nbsp;        );
+<b class="nc">&nbsp;        for (FieldError fe : ex.getBindingResult().getFieldErrors()) {</b>
+<b class="nc">&nbsp;            error.addError(fe.getField(), fe.getDefaultMessage());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return ResponseEntity.status(BAD_REQUEST).body(Mono.just(error));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(ObjectNotFoundException.class)
+&nbsp;    public ResponseEntity&lt;Mono&lt;StandardError&gt;&gt; objectNotFoundException(ObjectNotFoundException ex, ServerHttpRequest request) {
+<b class="nc">&nbsp;        return ResponseEntity.badRequest()</b>
+<b class="nc">&nbsp;                .body(Mono.just(</b>
+<b class="nc">&nbsp;                        StandardError.builder()</b>
+<b class="nc">&nbsp;                                .timeStamp(now())</b>
+<b class="nc">&nbsp;                                .status(NOT_FOUND.value())</b>
+<b class="nc">&nbsp;                                .error(NOT_FOUND.getReasonPhrase())</b>
+<b class="nc">&nbsp;                                .message(ex.getMessage())</b>
+<b class="nc">&nbsp;                                .path(request.getURI().getPath())</b>
+<b class="nc">&nbsp;                                .build()));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-09-01 16:23</div>
+</div>
+</body>
+</html>

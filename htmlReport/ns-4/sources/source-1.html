@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > UserMapperImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mizitoh.webflux.mapper</a>
+</div>
+
+<h1>Coverage Summary for Class: UserMapperImpl (com.mizitoh.webflux.mapper)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserMapperImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.mizitoh.webflux.mapper;
+&nbsp;
+&nbsp;import com.mizitoh.webflux.entities.User;
+&nbsp;import com.mizitoh.webflux.model.request.UserRequest;
+&nbsp;import com.mizitoh.webflux.model.response.UserResponse;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;@Generated(
+&nbsp;    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+&nbsp;    date = &quot;2024-09-01T14:37:26-0300&quot;,
+&nbsp;    comments = &quot;version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.8.jar, environment: Java 17.0.10 (Amazon.com Inc.)&quot;
+&nbsp;)
+&nbsp;@Component
+<b class="nc">&nbsp;public class UserMapperImpl implements UserMapper {</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User toEntity(UserRequest request) {
+<b class="nc">&nbsp;        if ( request == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        User.UserBuilder user = User.builder();</b>
+&nbsp;
+<b class="nc">&nbsp;        if ( request.name() != null ) {</b>
+<b class="nc">&nbsp;            user.name( request.name() );</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( request.email() != null ) {</b>
+<b class="nc">&nbsp;            user.email( request.email() );</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( request.password() != null ) {</b>
+<b class="nc">&nbsp;            user.password( request.password() );</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return user.build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserResponse toResponse(User entity) {
+<b class="nc">&nbsp;        if ( entity == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        String id = null;</b>
+<b class="nc">&nbsp;        String name = null;</b>
+<b class="nc">&nbsp;        String email = null;</b>
+<b class="nc">&nbsp;        String password = null;</b>
+&nbsp;
+<b class="nc">&nbsp;        if ( entity.getId() != null ) {</b>
+<b class="nc">&nbsp;            id = entity.getId();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( entity.getName() != null ) {</b>
+<b class="nc">&nbsp;            name = entity.getName();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( entity.getEmail() != null ) {</b>
+<b class="nc">&nbsp;            email = entity.getEmail();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( entity.getPassword() != null ) {</b>
+<b class="nc">&nbsp;            password = entity.getPassword();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        UserResponse userResponse = new UserResponse( id, name, email, password );</b>
+&nbsp;
+<b class="nc">&nbsp;        return userResponse;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User toEntity(UserRequest request, User entity) {
+<b class="nc">&nbsp;        if ( request == null ) {</b>
+<b class="nc">&nbsp;            return entity;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if ( request.name() != null ) {</b>
+<b class="nc">&nbsp;            entity.setName( request.name() );</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( request.email() != null ) {</b>
+<b class="nc">&nbsp;            entity.setEmail( request.email() );</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if ( request.password() != null ) {</b>
+<b class="nc">&nbsp;            entity.setPassword( request.password() );</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return entity;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-09-01 16:23</div>
+</div>
+</body>
+</html>
